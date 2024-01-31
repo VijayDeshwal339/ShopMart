@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const {Schema} = mongoose;
-const OTPSchema = Schema(
+const OTPSchema = new Schema(
     {
         otp: {
             type: Number,
