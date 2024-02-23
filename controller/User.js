@@ -1,8 +1,7 @@
 const { Category } = require('../model/Category');
 const { User } = require('../model/User');
 
-class UserController{
- static fetchUserById = async (req, res) => {
+exports.fetchUserById = async (req, res) => {
   const { id } = req.user;
   console.log(id)
   try {
@@ -13,7 +12,7 @@ class UserController{
   }
 };
 
-static updateUser = async (req, res) => {
+exports.updateUser = async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findByIdAndUpdate(id, req.body, { new: true });
@@ -22,6 +21,3 @@ static updateUser = async (req, res) => {
     res.status(400).json(err);
   }
 };
-}
-
-module.exports = UserController;

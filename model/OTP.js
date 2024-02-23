@@ -1,22 +1,21 @@
-const mongoose = require("mongoose");
-const {Schema} = mongoose;
-const OTPSchema = new Schema(
-    {
-        otp: {
-            type: Number,
-            default:"",
-        },
-        email: {
-            type: String,
-            default: "",
-            require: true,
-        },
-        status: {
-            type: Number,
-            default: 0,
-        },
+const mongoose = require('mongoose');
+
+const otpSchema = new mongoose.Schema({
+
+    phoneNumber:{
+        type:String, 
+        required:true
     },
-    { timestamps: true }
-)
- const OTPModel = mongoose.model("OTP", OTPSchema);
- module.exports=OTPModel;
+    otp:{
+        type:String,
+        required:true
+    },
+    otpExpiration:{
+        type:Date,
+        default:Date.now(),
+        get: (otpExpiration)=> otpExpiration.getTime(),
+        set: (otpExpiration) => new Date(otpExpiration)
+    }
+})
+
+module.exports = mongoose.model('Otp', otpSchema);
